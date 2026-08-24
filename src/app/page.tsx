@@ -15,7 +15,7 @@ export default function HomePage() {
             <h2 className="text-xs font-bold text-sky-800 uppercase tracking-widest mb-2">About Our Company</h2>
             <h3 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Simplifying Global Mobility Since Establishment</h3>
             <p className="text-gray-600 mb-6 leading-relaxed">
-              Conquest Visa and Immigration Services was established with a singular mission: to remove the friction from international travel. Whether you are traveling for tourism, business, or education, our expert team manages the complex documentation and embassy protocols so you don't have to.
+              Conquest Visa and Immigration Services was established with a singular mission: to remove the friction from international travel. Whether you are traveling for tourism, business, or education, our expert team manages the complex documentation and embassy protocols so you don&apos;t have to.
             </p>
             <Link href="/about" className="text-sky-700 font-bold hover:text-sky-900 flex items-center gap-2 transition">
               Read More About Us &rarr;
