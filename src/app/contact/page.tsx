@@ -10,6 +10,7 @@ function ContactForm() {
   const searchParams = useSearchParams();
   const [formData, setFormData] = useState({
     name: "",
+    dob: "", // New DOB field
     email: "",
     phone: "",
     citizenOf: "India",
@@ -35,7 +36,6 @@ function ContactForm() {
     e.preventDefault();
     setStatus("loading");
     
-    // Format safely to prevent Google Sheets formula errors
     const payload = {
       ...formData,
       phone: `(+91) ${formData.phone}`
@@ -79,16 +79,28 @@ function ContactForm() {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1">Full Name</label>
-            <input
-              type="text"
-              required
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-900 font-medium focus:ring-2 focus:ring-sky-500 outline-none placeholder-gray-400"
-              placeholder="e.g. John Doe"
-            />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-semibold text-gray-700 mb-1">Full Name</label>
+              <input
+                type="text"
+                required
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-900 font-medium focus:ring-2 focus:ring-sky-500 outline-none placeholder-gray-400"
+                placeholder="e.g. John Doe"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-gray-700 mb-1">Date of Birth</label>
+              <input
+                type="date"
+                required
+                value={formData.dob}
+                onChange={(e) => setFormData({ ...formData, dob: e.target.value })}
+                className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-900 font-medium focus:ring-2 focus:ring-sky-500 outline-none"
+              />
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -126,6 +138,7 @@ function ContactForm() {
               <label className="block text-xs font-semibold text-gray-700 mb-1">Citizen Of</label>
               <input
                 type="text"
+                required
                 value={formData.citizenOf}
                 onChange={(e) => setFormData({ ...formData, citizenOf: e.target.value })}
                 className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-900 font-medium focus:ring-2 focus:ring-sky-500 outline-none"
@@ -134,6 +147,7 @@ function ContactForm() {
             <div>
               <label className="block text-xs font-semibold text-gray-700 mb-1">Destination Country</label>
               <select
+                required
                 value={formData.destination}
                 onChange={(e) => setFormData({ ...formData, destination: e.target.value })}
                 className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-900 font-medium focus:ring-2 focus:ring-sky-500 outline-none"
@@ -164,6 +178,7 @@ function ContactForm() {
               <input
                 type="number"
                 min="1"
+                required
                 value={formData.applicants}
                 onChange={(e) => setFormData({ ...formData, applicants: Number(e.target.value) })}
                 className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-900 font-medium focus:ring-2 focus:ring-sky-500 outline-none"
