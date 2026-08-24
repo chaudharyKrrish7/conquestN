@@ -7,7 +7,7 @@ export default function Footer() {
         <div>
           <h3 className="text-white font-bold text-lg mb-3">Conquest Visa</h3>
           <p className="text-sm text-gray-400 leading-relaxed">
-            Your trusted global immigration partner. Reliable, fast, and structured visa solutions worldwide.
+            Independently owned global immigration partner established in 2002. Serving individual and corporate clients worldwide.
           </p>
         </div>
         <div>
@@ -15,17 +15,15 @@ export default function Footer() {
           <ul className="space-y-2 text-sm">
             <li><Link href="/" className="hover:text-white transition">Home</Link></li>
             <li><Link href="/about" className="hover:text-white transition">About Us</Link></li>
-            <li><Link href="/contact" className="hover:text-white transition">Apply for Visa</Link></li>
+            <li><Link href="/contact" className="hover:text-white transition">Contact & Apply</Link></li>
           </ul>
         </div>
         <div>
-          <h4 className="text-white font-semibold text-sm mb-3 uppercase tracking-wider">Popular Destinations</h4>
-          <ul className="space-y-2 text-sm">
-            <li>India Tourist & Business eVisa</li>
-            <li>United Arab Emirates Entry</li>
-            <li>United Kingdom Visitor Visa</li>
-            <li>United States & Canada</li>
-          </ul>
+          <h4 className="text-white font-semibold text-sm mb-3 uppercase tracking-wider">Headquarters</h4>
+          <p className="text-sm leading-relaxed text-gray-300">
+            AFF 188, First Floor, Gaur World Smart Street, Greater Noida West, Gautam Budh Nagar, UP
+          </p>
+          <p className="text-xs text-red-400 mt-2">Strict No-Refunds Policy</p>
         </div>
         <div>
           <h4 className="text-white font-semibold text-sm mb-3 uppercase tracking-wider">Contact</h4>
