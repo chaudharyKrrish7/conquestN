@@ -26,12 +26,16 @@ export default function Footer() {
           </p>
           <p className="text-xs text-red-400 mt-2">Strict No-Refunds Policy</p>
         </div>
+        {/* Inside src/components/Footer.tsx */}
         <div>
           <h4 className="text-white font-semibold text-sm mb-3 uppercase tracking-wider">Contact</h4>
           <p className="text-sm text-sky-400 font-medium hover:text-sky-300 transition-colors">
             <a href="mailto:conquestvisa@gmail.com">conquestvisa@gmail.com</a>
           </p>
-          <p className="text-sm mt-1">+91 98765 43210</p>
+          {/* Updated Phone Number */}
+          <p className="text-sm mt-1 text-gray-300">+91 98996 95814</p>
+          <p className="text-sm mt-1 text-gray-300">+91 98188 73814</p> 
+          <p className="text-sm mt-1 text-gray-300">+91 98996 90204</p> 
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-gray-900 text-center text-xs text-gray-600">
