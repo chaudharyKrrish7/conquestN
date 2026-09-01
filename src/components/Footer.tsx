@@ -6,8 +6,9 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
         <div>
           <h3 className="text-white font-bold text-lg mb-3">Conquest Visa</h3>
+          {/* Updated Footer Description */}
           <p className="text-sm text-gray-400 leading-relaxed">
-            Independently owned global immigration partner established in 2002. Serving individual and corporate clients worldwide.
+            Making visas and international travel completely hassle-free for individuals and businesses since 2002.
           </p>
         </div>
         <div>
@@ -27,7 +28,9 @@ export default function Footer() {
         </div>
         <div>
           <h4 className="text-white font-semibold text-sm mb-3 uppercase tracking-wider">Contact</h4>
-          <p className="text-sm">support@conquestvisa.com</p>
+          <p className="text-sm text-sky-400 font-medium hover:text-sky-300 transition-colors">
+            <a href="mailto:conquestvisa@gmail.com">conquestvisa@gmail.com</a>
+          </p>
           <p className="text-sm mt-1">+91 98765 43210</p>
         </div>
       </div>
