@@ -2,7 +2,7 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { CheckCircle2, Send } from "lucide-react";
+import { CheckCircle2, Send, AlertCircle } from "lucide-react";
 import Link from "next/link";
 import { COUNTRIES } from "@/data/visaData";
 
@@ -10,7 +10,7 @@ function ContactForm() {
   const searchParams = useSearchParams();
   const [formData, setFormData] = useState({
     name: "",
-    dob: "", // New DOB field
+    dob: "", 
     email: "",
     phone: "",
     citizenOf: "India",
@@ -59,66 +59,72 @@ function ContactForm() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto bg-white p-8 md:p-10 rounded-3xl border border-gray-200 shadow-xl my-12 text-gray-900">
-      <div className="flex justify-between items-center mb-2">
-        <h1 className="text-2xl font-black text-gray-900">Start Your Application</h1>
-        <Link href="/" className="text-xs text-sky-700 font-bold hover:underline">&larr; Back to Home</Link>
+    <div className="max-w-2xl mx-auto bg-white p-8 md:p-12 rounded-[2.5rem] border border-zinc-200 shadow-sm my-12 text-zinc-900 relative z-10">
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-3xl font-black text-zinc-950 tracking-tight">Application.</h1>
+        <Link href="/" className="text-[10px] uppercase tracking-widest text-zinc-400 font-bold hover:text-zinc-950 transition-colors">
+          &larr; Back
+        </Link>
       </div>
-      <p className="text-sm text-gray-500 mb-8">
+      <p className="text-sm text-zinc-500 font-medium mb-8 leading-relaxed">
         Submit your details below. Our immigration desk will review your credentials and contact you immediately. 
-        <span className="block text-xs text-red-600 font-semibold mt-1">*Note: Conquest Visa and Immigration Services maintains a strict no-refunds policy once processing is initiated.</span>
+        <span className="block text-[10px] uppercase tracking-widest text-zinc-400 font-bold mt-3 bg-zinc-50 p-2.5 rounded-lg inline-block border border-zinc-100">
+          * Strict no-refunds policy once processing is initiated.
+        </span>
       </p>
 
       {status === "success" ? (
-        <div className="bg-emerald-50 border border-emerald-200 text-emerald-800 p-6 rounded-2xl flex items-center gap-3">
-          <CheckCircle2 className="w-8 h-8 text-emerald-600 flex-shrink-0" />
+        <div className="bg-zinc-50 border border-zinc-200 text-zinc-950 p-8 rounded-3xl flex flex-col items-center text-center gap-4">
+          <div className="bg-white p-3 rounded-full shadow-sm border border-zinc-200">
+            <CheckCircle2 className="w-8 h-8 text-zinc-950" />
+          </div>
           <div>
-            <h4 className="font-bold">Application Received!</h4>
-            <p className="text-xs text-emerald-700 mt-1">Our specialists are preparing your documents and will reach out shortly.</p>
+            <h4 className="font-black text-xl tracking-tight mb-2">Application Received</h4>
+            <p className="text-sm text-zinc-500 font-medium">Our specialists are preparing your documents and will reach out shortly.</p>
           </div>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1">Full Name</label>
+              <label className="block text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-2 pl-1">Full Name</label>
               <input
                 type="text"
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-900 font-medium focus:ring-2 focus:ring-sky-500 outline-none placeholder-gray-400"
+                className="w-full px-4 py-3.5 rounded-xl border border-zinc-200 bg-zinc-50 text-zinc-950 font-bold focus:bg-white focus:ring-2 focus:ring-zinc-950 outline-none transition-all placeholder:font-medium placeholder:text-zinc-300 text-sm"
                 placeholder="e.g. John Doe"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1">Date of Birth</label>
+              <label className="block text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-2 pl-1">Date of Birth</label>
               <input
                 type="date"
                 required
                 value={formData.dob}
                 onChange={(e) => setFormData({ ...formData, dob: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-900 font-medium focus:ring-2 focus:ring-sky-500 outline-none"
+                className="w-full px-4 py-3.5 rounded-xl border border-zinc-200 bg-zinc-50 text-zinc-950 font-bold focus:bg-white focus:ring-2 focus:ring-zinc-950 outline-none transition-all text-sm"
               />
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1">Email Address</label>
+              <label className="block text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-2 pl-1">Email Address</label>
               <input
                 type="email"
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-900 font-medium focus:ring-2 focus:ring-sky-500 outline-none placeholder-gray-400"
+                className="w-full px-4 py-3.5 rounded-xl border border-zinc-200 bg-zinc-50 text-zinc-950 font-bold focus:bg-white focus:ring-2 focus:ring-zinc-950 outline-none transition-all placeholder:font-medium placeholder:text-zinc-300 text-sm"
                 placeholder="john@example.com"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1">Phone Number</label>
-              <div className="flex items-center w-full rounded-xl border border-gray-300 bg-white focus-within:ring-2 focus-within:ring-sky-500 overflow-hidden">
-                <span className="px-4 py-3 bg-gray-100 text-gray-900 font-bold border-r border-gray-300">
+              <label className="block text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-2 pl-1">Phone Number</label>
+              <div className="flex items-center w-full rounded-xl border border-zinc-200 bg-zinc-50 focus-within:ring-2 focus-within:ring-zinc-950 focus-within:bg-white transition-all overflow-hidden">
+                <span className="px-4 py-3.5 bg-zinc-100 text-zinc-500 font-bold border-r border-zinc-200 text-sm">
                   +91
                 </span>
                 <input
@@ -126,31 +132,31 @@ function ContactForm() {
                   required
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full px-4 py-3 bg-transparent text-gray-900 font-medium outline-none placeholder-gray-400"
+                  className="w-full px-4 py-3.5 bg-transparent text-zinc-950 font-bold outline-none placeholder:font-medium placeholder:text-zinc-300 text-sm"
                   placeholder="98765 43210"
                 />
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1">Citizen Of</label>
+              <label className="block text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-2 pl-1">Citizen Of</label>
               <input
                 type="text"
                 required
                 value={formData.citizenOf}
                 onChange={(e) => setFormData({ ...formData, citizenOf: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-900 font-medium focus:ring-2 focus:ring-sky-500 outline-none"
+                className="w-full px-4 py-3.5 rounded-xl border border-zinc-200 bg-zinc-50 text-zinc-950 font-bold focus:bg-white focus:ring-2 focus:ring-zinc-950 outline-none transition-all text-sm"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1">Destination Country</label>
+              <label className="block text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-2 pl-1">Destination Country</label>
               <select
                 required
                 value={formData.destination}
                 onChange={(e) => setFormData({ ...formData, destination: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-900 font-medium focus:ring-2 focus:ring-sky-500 outline-none"
+                className="w-full px-4 py-3.5 rounded-xl border border-zinc-200 bg-zinc-50 text-zinc-950 font-bold focus:bg-white focus:ring-2 focus:ring-zinc-950 outline-none transition-all appearance-none text-sm cursor-pointer"
               >
                 <option value="" disabled>Select Destination</option>
                 {COUNTRIES.map((c) => (
@@ -162,37 +168,37 @@ function ContactForm() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1">Visa Type (Optional)</label>
+              <label className="block text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-2 pl-1">Visa Type (Optional)</label>
               <input
                 type="text"
                 value={formData.visaType}
                 onChange={(e) => setFormData({ ...formData, visaType: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-900 font-medium focus:ring-2 focus:ring-sky-500 outline-none placeholder-gray-400"
+                className="w-full px-4 py-3.5 rounded-xl border border-zinc-200 bg-zinc-50 text-zinc-950 font-bold focus:bg-white focus:ring-2 focus:ring-zinc-950 outline-none transition-all placeholder:font-medium placeholder:text-zinc-300 text-sm"
                 placeholder="e.g. Tourist Visa"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1">Number of Applicants</label>
+              <label className="block text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-2 pl-1">Applicants</label>
               <input
                 type="number"
                 min="1"
                 required
                 value={formData.applicants}
                 onChange={(e) => setFormData({ ...formData, applicants: Number(e.target.value) })}
-                className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-900 font-medium focus:ring-2 focus:ring-sky-500 outline-none"
+                className="w-full px-4 py-3.5 rounded-xl border border-zinc-200 bg-zinc-50 text-zinc-950 font-bold focus:bg-white focus:ring-2 focus:ring-zinc-950 outline-none transition-all text-sm"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-700 mb-1">Specific Requirements / Notes</label>
+            <label className="block text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-2 pl-1">Notes / Requirements</label>
             <textarea
               rows={3}
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 bg-white text-gray-900 font-medium focus:ring-2 focus:ring-sky-500 outline-none placeholder-gray-400"
+              className="w-full px-4 py-3.5 rounded-xl border border-zinc-200 bg-zinc-50 text-zinc-950 font-bold focus:bg-white focus:ring-2 focus:ring-zinc-950 outline-none transition-all placeholder:font-medium placeholder:text-zinc-300 text-sm resize-none"
               placeholder="Provide any additional details or travel dates..."
             />
           </div>
@@ -200,10 +206,16 @@ function ContactForm() {
           <button
             type="submit"
             disabled={status === "loading"}
-            className="w-full bg-sky-900 hover:bg-sky-950 text-white font-bold py-3.5 rounded-xl transition flex items-center justify-center gap-2 shadow-lg cursor-pointer"
+            className="w-full bg-zinc-950 hover:bg-zinc-800 text-white font-bold py-4 rounded-xl transition-colors flex items-center justify-center gap-2 shadow-sm text-sm mt-2 disabled:opacity-70 disabled:cursor-not-allowed"
           >
             {status === "loading" ? "Submitting..." : <><span>Submit Application</span><Send className="w-4 h-4" /></>}
           </button>
+          
+          {status === "error" && (
+            <div className="flex items-center gap-2 text-red-600 bg-red-50 p-3 rounded-lg text-xs font-bold justify-center border border-red-100">
+              <AlertCircle className="w-4 h-4" /> Failed to submit. Please try again.
+            </div>
+          )}
         </form>
       )}
     </div>
@@ -212,8 +224,13 @@ function ContactForm() {
 
 export default function Page() {
   return (
-    <Suspense fallback={<div className="p-12 text-center text-gray-500">Loading form...</div>}>
-      <ContactForm />
-    </Suspense>
+    <main 
+      className="min-h-screen bg-[#fafafa] font-sans pt-10 px-6" 
+      style={{ backgroundImage: 'radial-gradient(#e5e7eb 1px, transparent 1px)', backgroundSize: '24px 24px' }}
+    >
+      <Suspense fallback={<div className="p-12 text-center font-bold text-zinc-400 uppercase tracking-widest text-xs">Loading form...</div>}>
+        <ContactForm />
+      </Suspense>
+    </main>
   );
 }
