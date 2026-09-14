@@ -6,26 +6,25 @@ export async function POST(req: Request) {
     const { name, dob, email, phone, citizenOf, destination, visaType, applicants, message } = body;
 
     // 1. Google Sheets Integration (Maintains your perfect Excel record)
+    // FIX: Send a flat object instead of an array nested inside { data: [] }
     const sheetData = {
-      data: [
-        new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }), // Timestamp
-        name,
-        dob, 
-        email,
-        phone,
-        citizenOf,
-        destination,
-        visaType || "N/A",
-        applicants,
-        message || "N/A"
-      ]
+      timestamp: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
+      name: name,
+      dob: dob, 
+      email: email,
+      phone: phone,
+      citizenOf: citizenOf,
+      destination: destination,
+      visaType: visaType || "N/A",
+      applicants: applicants,
+      message: message || "N/A"
     };
 
     if (process.env.GOOGLE_SHEET_WEBHOOK_URL) {
       await fetch(process.env.GOOGLE_SHEET_WEBHOOK_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(sheetData), 
+        body: JSON.stringify(sheetData), // Sends flat JSON object
       }).catch(err => console.error("Sheet Error:", err));
     }
 
@@ -35,16 +34,15 @@ export async function POST(req: Request) {
       const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-          user: process.env.EMAIL_USER, // Your server/sending email (can be the same as conquestvisa@gmail.com)
-          pass: process.env.EMAIL_PASS, // App password
+          user: process.env.EMAIL_USER, 
+          pass: process.env.EMAIL_PASS, 
         },
       });
 
       const mailOptions = {
-        from: `"${name} (New Lead)" <${process.env.EMAIL_USER}>`, // Shows the client's name as the sender name
-        replyTo: email, // <-- MAGIC LINE: Clicking 'Reply' goes straight to the customer's email!
-        // Inside your mailOptions in src/app/api/contact/route.ts
-        to: "conquestvisa@gmail.com", // <-- lowercase here
+        from: `"${name} (New Lead)" <${process.env.EMAIL_USER}>`, 
+        replyTo: email, 
+        to: "conquestvisa@gmail.com", 
         subject: `New Visa Lead: ${name} to ${destination}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-w-600px; padding: 20px; border: 1px solid #e2e8f0; border-radius: 10px;">
